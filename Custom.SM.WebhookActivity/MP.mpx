@@ -1,0 +1,216 @@
+﻿<ManagementPackFragment SchemaVersion="SM2.0" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+  <TypeDefinitions>
+    <EntityTypes>
+      <ClassTypes>
+        <!-- The Webhook Activity is a custom class based on the generic Activity Class
+             Properties are created to enable the containment of webhook connectivity info, as well as a parameter name/value collection (max 10)
+             This can be combined in SCSM service offerings and templates to populate the data to send to the webhook
+        -->
+        <ClassType ID="Custom.SM.WebhookActivity.ActivityClass" Abstract="false" Base="SWAL!System.WorkItem.Activity.AutomatedActivity" Hosted="false" Accessibility="Public">
+         
+          <Property ID="URL" Type="string"/>
+          <Property ID="ParameterName1" Type="string" />
+          <Property ID="ParameterValue1" Type="string"/>
+          <Property ID="ParameterName2" Type="string" />
+          <Property ID="ParameterValue2" Type="string"/>
+          <Property ID="ParameterName3" Type="string" />
+          <Property ID="ParameterValue3" Type="string"/>
+          <Property ID="ParameterName4" Type="string" />
+          <Property ID="ParameterValue4" Type="string"/>
+          <Property ID="ParameterName5" Type="string" />
+          <Property ID="ParameterValue5" Type="string"/>
+          <Property ID="ParameterName6" Type="string" />
+          <Property ID="ParameterValue6" Type="string"/>
+          <Property ID="ParameterName7" Type="string" />
+          <Property ID="ParameterValue7" Type="string"/>
+          <Property ID="ParameterName8" Type="string" />
+          <Property ID="ParameterValue8" Type="string"/>
+          <Property ID="ParameterName9" Type="string" />
+          <Property ID="ParameterValue9" Type="string"/>
+          <Property ID="ParameterName10" Type="string" />
+          <Property ID="ParameterValue10" Type="string"/>
+          <Property ID="WaitForCallBack" Type="bool" DefaultValue="false"/>
+          <Property ID="IncludeActivityId" Type="bool" DefaultValue="false"/>
+          <Property ID="ActivityIdParameterName" Type="string" DefaultValue="ActivityId" />
+          <Property ID="StatusText" Type="string" />
+        </ClassType>
+                   
+      </ClassTypes>
+    </EntityTypes>
+  </TypeDefinitions>
+  <Categories>
+    <!--Mark the MP as a SCSM MP-->
+    <Category ID="Custom.SM.WebhookActivity.MPCategory" Value="MESUC!Microsoft.SystemCenter.ManagementPack">
+      <ManagementPackName>Custom.SM.WebhookActivity</ManagementPackName>
+      <ManagementPackVersion>1.0.0.0</ManagementPackVersion>
+      <ManagementPackPublicKeyToken>d7ba35c9e2cc658d</ManagementPackPublicKeyToken>
+    </Category>
+    <!--Make the workflow visible in the SCSM Console-->
+    <Category ID="Custom.SM.WebhookActivity.WorkflowCategory" Value="MESUA!Microsoft.EnterpriseManagement.ServiceManager.Rules.WorkflowSubscriptions" Target="Custom.SM.WebhookActivity.InProgressRule" />
+    	
+  </Categories>
+
+ <Monitoring>
+   <Rules>
+     <!--Trigger on Webhook Activity objects that change status from not in-progress to in-progress. Run the webhook post workflow as a response.-->
+     <Rule ID="Custom.SM.WebhookActivity.InProgressRule" ConfirmDelivery="true" Remotable="true" Enabled="true" Target="MSS!Microsoft.SystemCenter.Subscriptions.Administrator.WorkflowTarget">
+       <Category>Notification</Category>
+       <DataSources>
+         <DataSource ID="DS" TypeID="MSS!Microsoft.SystemCenter.CmdbInstanceSubscription.DataSourceModule">
+           <Subscription>
+             <InstanceSubscription Type="$MPElement[Name='Custom.SM.WebhookActivity.ActivityClass']$">
+
+                 <UpdateInstance>
+              
+                     <Criteria>
+                       <Expression>
+                       
+                             <And>
+                               <Expression>
+                                 <SimpleExpression>
+                                   <ValueExpression>
+                                     <Property State="Pre">$Context/Property[Type='SWAL!System.WorkItem.Activity']/Status$</Property>
+                                   </ValueExpression>
+                                   <Operator>NotEqual</Operator>
+                                   <ValueExpression>
+                                     <Value>{11fc3cef-15e5-bca4-dee0-9c1155ec8d83}</Value>
+                                   </ValueExpression>
+                                 </SimpleExpression>
+                               </Expression>
+                               <Expression>
+                                 <SimpleExpression>
+                                   <ValueExpression>
+                                     <Property State="Post">$Context/Property[Type='SWAL!System.WorkItem.Activity']/Status$</Property>
+                                   </ValueExpression>
+                                   <Operator>Equal</Operator>
+                                   <ValueExpression>
+                                     <Value>{11fc3cef-15e5-bca4-dee0-9c1155ec8d83}</Value>
+                                   </ValueExpression>
+                                 </SimpleExpression>
+                               </Expression>
+                             </And>
+                           </Expression>
+                           
+                         
+                     </Criteria>
+                 
+               </UpdateInstance>
+             </InstanceSubscription>
+             <PollingIntervalInSeconds>60</PollingIntervalInSeconds>
+             <BatchSize>100</BatchSize>
+           </Subscription>
+         </DataSource>
+       </DataSources>
+       <WriteActions>
+         <WriteAction ID="WA" TypeID="MSS!Microsoft.EnterpriseManagement.SystemCenter.Subscription.WindowsWorkflowTaskWriteAction">
+           <Subscription>
+             <WindowsWorkflowConfiguration>
+               <AssemblyName>Custom.SM.WebhookActivity.Workflows</AssemblyName>
+               <WorkflowTypeName>Custom.SM.WebhookActivity.Workflows.WebhookWorkflow</WorkflowTypeName>
+               <WorkflowParameters>
+                 <WorkflowParameter Name="InstanceId" Type="string">$Data/BaseManagedEntityId$</WorkflowParameter>
+               </WorkflowParameters>
+               <RetryExceptions />
+               <RetryDelaySeconds>60</RetryDelaySeconds>
+               <MaximumRunningTimeSeconds>300</MaximumRunningTimeSeconds>
+             </WindowsWorkflowConfiguration>
+           </Subscription>
+         </WriteAction>
+       </WriteActions>
+     </Rule>
+   </Rules>
+ </Monitoring>
+
+  <LanguagePacks>
+    <LanguagePack ID="ENU" IsDefault="true">
+      <DisplayStrings>
+        <DisplayString ElementID="Custom.SM.WebhookActivity.ActivityClass" SubElementID="URL">
+          <Name>URL</Name>
+        </DisplayString>
+        <DisplayString ElementID="Custom.SM.WebhookActivity.ActivityClass" SubElementID="ParameterName1">
+          <Name>Parameter Name 1</Name>
+        </DisplayString>
+        <DisplayString ElementID="Custom.SM.WebhookActivity.ActivityClass" SubElementID="ParameterValue1">
+          <Name>Parameter Value 1</Name>
+        </DisplayString>
+      
+        <DisplayString ElementID="Custom.SM.WebhookActivity.ActivityClass" SubElementID="ParameterName2">
+          <Name>Parameter Name 2</Name>
+        </DisplayString>
+        <DisplayString ElementID="Custom.SM.WebhookActivity.ActivityClass" SubElementID="ParameterValue2">
+          <Name>Parameter Value 2</Name>
+        </DisplayString>
+   
+        <DisplayString ElementID="Custom.SM.WebhookActivity.ActivityClass" SubElementID="ParameterName3">
+          <Name>Parameter Name 3</Name>
+        </DisplayString>
+        <DisplayString ElementID="Custom.SM.WebhookActivity.ActivityClass" SubElementID="ParameterValue3">
+          <Name>Parameter Value 3</Name>
+        </DisplayString>
+       
+        <DisplayString ElementID="Custom.SM.WebhookActivity.ActivityClass" SubElementID="ParameterName4">
+          <Name>Parameter Name 4</Name>
+        </DisplayString>
+        <DisplayString ElementID="Custom.SM.WebhookActivity.ActivityClass" SubElementID="ParameterValue4">
+          <Name>Parameter Value 4</Name>
+        </DisplayString>
+       
+        <DisplayString ElementID="Custom.SM.WebhookActivity.ActivityClass" SubElementID="ParameterName5">
+          <Name>Parameter Name 5</Name>
+        </DisplayString>
+        <DisplayString ElementID="Custom.SM.WebhookActivity.ActivityClass" SubElementID="ParameterValue5">
+          <Name>Parameter Value 5</Name>
+        </DisplayString>
+        
+        <DisplayString ElementID="Custom.SM.WebhookActivity.ActivityClass" SubElementID="ParameterName6">
+          <Name>Parameter Name 6</Name>
+        </DisplayString>
+        <DisplayString ElementID="Custom.SM.WebhookActivity.ActivityClass" SubElementID="ParameterValue6">
+          <Name>Parameter Value 6</Name>
+        </DisplayString>
+        <DisplayString ElementID="Custom.SM.WebhookActivity.ActivityClass" SubElementID="ParameterName7">
+          <Name>Parameter Name 7</Name>
+        </DisplayString>
+        <DisplayString ElementID="Custom.SM.WebhookActivity.ActivityClass" SubElementID="ParameterValue7">
+          <Name>Parameter Value 7</Name>
+        </DisplayString>
+        
+        <DisplayString ElementID="Custom.SM.WebhookActivity.ActivityClass" SubElementID="ParameterName8">
+          <Name>Parameter Name 8</Name>
+        </DisplayString>
+        <DisplayString ElementID="Custom.SM.WebhookActivity.ActivityClass" SubElementID="ParameterValue8">
+          <Name>Parameter Value 8</Name>
+        </DisplayString>
+        <DisplayString ElementID="Custom.SM.WebhookActivity.ActivityClass" SubElementID="ParameterName9">
+          <Name>Parameter Name 9</Name>
+        </DisplayString>
+        <DisplayString ElementID="Custom.SM.WebhookActivity.ActivityClass" SubElementID="ParameterValue9">
+          <Name>Parameter Value 9</Name>
+        </DisplayString>
+        <DisplayString ElementID="Custom.SM.WebhookActivity.ActivityClass" SubElementID="ParameterName10">
+          <Name>Parameter Name 10</Name>
+        </DisplayString>
+        <DisplayString ElementID="Custom.SM.WebhookActivity.ActivityClass" SubElementID="ParameterValue10">
+          <Name>Parameter Value 10</Name>
+        </DisplayString>
+        <DisplayString ElementID="Custom.SM.WebhookActivity.ActivityClass" SubElementID="ActivityIdParameterName">
+          <Name>Activity ID Parameter Name</Name>
+        </DisplayString>
+        <DisplayString ElementID="Custom.SM.WebhookActivity.ActivityClass" SubElementID="IncludeActivityId">
+          <Name>Include Activity ID</Name>
+        </DisplayString>
+        <DisplayString ElementID="Custom.SM.WebhookActivity.ActivityClass" SubElementID="WaitForCallBack">
+          <Name>Wait For Callback</Name>
+        </DisplayString>
+        <DisplayString ElementID="Custom.SM.WebhookActivity.ActivityClass" SubElementID="StatusText">
+          <Name>StatusText</Name>
+        </DisplayString>
+        <DisplayString ElementID="Custom.SM.WebhookActivity.ActivityClass">
+          <Name>Webhook Automation Activity</Name>
+        </DisplayString>
+        
+      </DisplayStrings>
+    </LanguagePack>
+  </LanguagePacks>
+  
+</ManagementPackFragment>
