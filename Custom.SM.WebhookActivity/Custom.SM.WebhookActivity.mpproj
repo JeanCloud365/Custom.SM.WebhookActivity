@@ -33,21 +33,23 @@
     <ManagementPackReference Include="Microsoft.EnterpriseManagement.ServiceManager.UI.Administration">
       <HintPath>D:\OneDrive - JVM-NET\JVM-NET\Projects\Custom.SM.WebhookActivity\Custom.SM.WebhookActivity\Custom.SM.WebhookActivity\references\Microsoft.EnterpriseManagement.ServiceManager.UI.Administration.mp</HintPath>
       <Alias>MESUA</Alias>
-      <MinVersion>7.5.7487.0</MinVersion>
+      <MinVersion>7.5.3079.0</MinVersion>
+      <PackageToBundle>False</PackageToBundle>
     </ManagementPackReference>
     <ManagementPackReference Include="Microsoft.EnterpriseManagement.ServiceManager.UI.Console">
       <HintPath>D:\OneDrive - JVM-NET\JVM-NET\Projects\Custom.SM.WebhookActivity\Custom.SM.WebhookActivity\Custom.SM.WebhookActivity\references\Microsoft.EnterpriseManagement.ServiceManager.UI.Console.mp</HintPath>
       <Alias>MESUC</Alias>
-      <MinVersion>7.5.7487.0</MinVersion>
+      <MinVersion>7.5.3079.0</MinVersion>
+      <PackageToBundle>False</PackageToBundle>
     </ManagementPackReference>
     <ManagementPackReference Include="Microsoft.SystemCenter.Library">
       <Alias>SC</Alias>
-      <PackageToBundle>false</PackageToBundle>
+      <PackageToBundle>False</PackageToBundle>
     </ManagementPackReference>
     <ManagementPackReference Include="Microsoft.SystemCenter.Subscriptions">
       <HintPath>D:\OneDrive - JVM-NET\JVM-NET\Projects\Custom.SM.WebhookActivity\Custom.SM.WebhookActivity\Custom.SM.WebhookActivity\references\Microsoft.SystemCenter.Subscriptions.mp</HintPath>
       <Alias>MSS</Alias>
-      <MinVersion>7.5.7487.0</MinVersion>
+      <MinVersion>7.5.3079.0</MinVersion>
       <PackageToBundle>False</PackageToBundle>
     </ManagementPackReference>
     <ManagementPackReference Include="System.Library">
