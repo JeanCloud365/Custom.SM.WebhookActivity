@@ -54,18 +54,18 @@
     </ManagementPackReference>
     <ManagementPackReference Include="System.Library">
       <Alias>System</Alias>
-      <PackageToBundle>false</PackageToBundle>
+      <PackageToBundle>False</PackageToBundle>
     </ManagementPackReference>
     <ManagementPackReference Include="System.WorkItem.Activity.Library">
       <HintPath>D:\OneDrive - JVM-NET\JVM-NET\Projects\Custom.SM.WebhookActivity\Custom.SM.WebhookActivity\Custom.SM.WebhookActivity\references\System.WorkItem.Activity.Library.mp</HintPath>
       <Alias>SWAL</Alias>
-      <MinVersion>7.5.7487.0</MinVersion>
+      <MinVersion>7.5.3079.0</MinVersion>
       <PackageToBundle>False</PackageToBundle>
     </ManagementPackReference>
     <ManagementPackReference Include="System.WorkItem.Library">
       <HintPath>D:\OneDrive - JVM-NET\JVM-NET\Projects\Custom.SM.WebhookActivity\Custom.SM.WebhookActivity\Custom.SM.WebhookActivity\references\System.WorkItem.Library.mp</HintPath>
       <Alias>SWL</Alias>
-      <MinVersion>7.5.7487.0</MinVersion>
+      <MinVersion>7.5.3079.0</MinVersion>
       <PackageToBundle>False</PackageToBundle>
     </ManagementPackReference>
   </ItemGroup>

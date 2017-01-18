@@ -13,6 +13,7 @@ using System.Workflow.ComponentModel;
 // Newtonsoft.JSon is used for the JSON encoding of the activity parameters: http://www.newtonsoft.com/json/
 using Newtonsoft.Json;
 using System.IO;
+using Microsoft.EnterpriseManagement.WorkflowFoundation;
 
 namespace Custom.SM.WebhookActivity.Workflows
 {

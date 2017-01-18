@@ -35,24 +35,30 @@
   <ItemGroup>
     <Reference Include="Microsoft.EnterpriseManagement.Core, Version=7.0.5000.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\Custom.SM.WebhookActivity\references\Microsoft.EnterpriseManagement.Core.dll</HintPath>
+      <HintPath>..\..\..\..\..\..\OneDrive - Inovativ\Projects\VDW\SCSM\dev2\VDW.CI\References\Microsoft.EnterpriseManagement.Core.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.EnterpriseManagement.ServiceManager, Version=7.0.5000.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\..\..\..\..\OneDrive - Inovativ\Projects\VDW\SCSM\dev2\VDW.CI\References\Microsoft.EnterpriseManagement.ServiceManager.dll</HintPath>
     </Reference>
     <Reference Include="Microsoft.EnterpriseManagement.WorkflowFoundation">
-      <HintPath>..\Custom.SM.WebhookActivity\references\Microsoft.EnterpriseManagement.WorkflowFoundation.dll</HintPath>
+      <HintPath>..\..\..\..\..\..\OneDrive - Inovativ\Projects\VDW\SCSM\dev2\VDW.CI\References\Microsoft.EnterpriseManagement.WorkflowFoundation.dll</HintPath>
     </Reference>
     <Reference Include="Microsoft.ServiceManager.WorkflowAuthoring">
-      <HintPath>..\Custom.SM.WebhookActivity\references\Microsoft.ServiceManager.WorkflowAuthoring.dll</HintPath>
+      <HintPath>..\..\..\..\..\..\OneDrive - Inovativ\Projects\VDW\SCSM\dev2\VDW.CI\References\Microsoft.ServiceManager.WorkflowAuthoring.dll</HintPath>
     </Reference>
     <Reference Include="Microsoft.ServiceManager.WorkflowAuthoring.ActivityLibrary">
-      <HintPath>..\Custom.SM.WebhookActivity\references\Microsoft.ServiceManager.WorkflowAuthoring.ActivityLibrary.dll</HintPath>
+      <HintPath>..\..\..\..\..\..\OneDrive - Inovativ\Projects\VDW\SCSM\dev2\VDW.CI\References\Microsoft.ServiceManager.WorkflowAuthoring.ActivityLibrary.dll</HintPath>
     </Reference>
     <Reference Include="Microsoft.ServiceManager.WorkflowAuthoring.Common">
-      <HintPath>..\Custom.SM.WebhookActivity\references\Microsoft.ServiceManager.WorkflowAuthoring.Common.dll</HintPath>
+      <HintPath>..\..\..\..\..\..\OneDrive - Inovativ\Projects\VDW\SCSM\dev2\VDW.CI\References\Microsoft.ServiceManager.WorkflowAuthoring.Common.dll</HintPath>
     </Reference>
     <Reference Include="Microsoft.ServiceManager.WorkflowAuthoring.ComponentModel">
-      <HintPath>..\Custom.SM.WebhookActivity\references\Microsoft.ServiceManager.WorkflowAuthoring.ComponentModel.dll</HintPath>
+      <HintPath>..\..\..\..\..\..\OneDrive - Inovativ\Projects\VDW\SCSM\dev2\VDW.CI\References\Microsoft.ServiceManager.WorkflowAuthoring.ComponentModel.dll</HintPath>
     </Reference>
-    <Reference Include="Newtonsoft.Json, Version=6.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL" />
+    <Reference Include="Newtonsoft.Json">
+      <HintPath>..\..\..\..\..\..\OneDrive - Inovativ\Projects\VDW\SCSM\dev2\VDW.CI\References2016\references\DLL\Newtonsoft.Json.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
     <Reference Include="System.Workflow.Activities" />
